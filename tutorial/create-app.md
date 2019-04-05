@@ -3,7 +3,7 @@
 Abra la interfaz de línea de comandos (CLI), vaya a un directorio donde tenga derechos para crear archivos y ejecute los siguientes comandos para instalar la herramienta [Create-reAct-App](https://www.npmjs.com/package/create-react-app) y crear una nueva aplicación reAct.
 
 ```Shell
-npm install create-react-app@2.1.0 -g
+npm install create-react-app@2.1.5 -g
 create-react-app graph-tutorial
 ```
 
@@ -28,8 +28,8 @@ Antes de continuar, instale algunos paquetes adicionales que usará más adelant
 Ejecute el siguiente comando en su CLI.
 
 ```Shell
-npm install react-router-dom@4.3.1 bootstrap@4.1.3 reactstrap@6.5.0 @fortawesome/fontawesome-free@5.4.2
-npm install moment@2.22.2 msal@0.2.3 @microsoft/microsoft-graph-client@1.3.0
+npm install react-router-dom@4.3.1 bootstrap@4.3.1 reactstrap@7.1.0 @fortawesome/fontawesome-free@5.7.2
+npm install moment@2.24.0 msal@0.2.4 @microsoft/microsoft-graph-client@1.5.2
 ```
 
 ## <a name="design-the-app"></a>Diseñar la aplicación
