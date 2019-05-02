@@ -2,11 +2,11 @@
 
 Este módulo le presentará cómo trabajar con Microsoft Graph en creación de una aplicación reAct de página única para obtener acceso a datos en Office 365.
 
-## <a name="lab---react-single-page-apps-with-the-microsoft-graph"></a>Laboratorio: reAccionar aplicaciones de una sola página con Microsoft Graph
+## <a name="lab---react-single-page-apps-with-the-microsoft-graph"></a>Laboratorio: reaccionar aplicaciones de una sola página con Microsoft Graph
 
 En este laboratorio, creará una aplicación reAct de página única, configurada con Azure Active Directory (Azure AD) para la autorización de & de autenticación, que tiene acceso a los datos de Office 365 con Microsoft Graph.
 
-- [ReAccionar el tutorial de Microsoft Graph](https://docs.microsoft.com/graph/training/react-tutorial)
+- [Reaccionar el tutorial de Microsoft Graph](https://docs.microsoft.com/graph/training/react-tutorial)
 
 ## <a name="demos"></a>Demostraciones
 
