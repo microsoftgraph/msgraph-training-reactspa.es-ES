@@ -4,7 +4,7 @@
 
 Para ejecutar el proyecto completado en esta carpeta, necesita lo siguiente:
 
-- [Visual Studio](https://visualstudio.microsoft.com/vs/) instalado en el equipo de desarrollo. Si no tiene Visual Studio, visite el vínculo anterior de opciones de descarga. (**Nota:** este tutorial se ha escrito con Visual Studio 2017 versión 15,81. Los pasos de esta guía pueden funcionar con otras versiones, pero no se han probado.
+- [Node. js](https://nodejs.org) instalado en el equipo de desarrollo. Si no tiene node. js, visite el vínculo anterior para las opciones de descarga. (**Nota:** este tutorial se ha escrito con la versión de nodo 10.15.3. Los pasos de esta guía pueden funcionar con otras versiones, pero no se han probado.
 - Una cuenta de Microsoft personal con un buzón de correo en Outlook.com o una cuenta profesional o educativa de Microsoft.
 
 Si no tiene una cuenta de Microsoft, hay un par de opciones para obtener una cuenta gratuita:
