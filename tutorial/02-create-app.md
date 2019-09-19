@@ -1,40 +1,40 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-<span data-ttu-id="974da-101">Abra la interfaz de línea de comandos (CLI), vaya a un directorio donde tenga derechos para crear archivos y ejecute los siguientes comandos para instalar la herramienta [Create-reAct-App](https://www.npmjs.com/package/create-react-app) y crear una nueva aplicación reAct.</span><span class="sxs-lookup"><span data-stu-id="974da-101">Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following commands to install the [create-react-app](https://www.npmjs.com/package/create-react-app) tool and create a new React app.</span></span>
+<span data-ttu-id="202a2-101">Abra la interfaz de línea de comandos (CLI), vaya a un directorio donde tenga derechos para crear archivos y ejecute los siguientes comandos para instalar la herramienta [Create-reAct-App](https://www.npmjs.com/package/create-react-app) y crear una nueva aplicación reAct.</span><span class="sxs-lookup"><span data-stu-id="202a2-101">Open your command-line interface (CLI), navigate to a directory where you have rights to create files, and run the following commands to install the [create-react-app](https://www.npmjs.com/package/create-react-app) tool and create a new React app.</span></span>
 
 ```Shell
-npm install create-react-app@3.0.1 -g
+npm install create-react-app@3.1.1 -g
 create-react-app graph-tutorial
 ```
 
-<span data-ttu-id="974da-102">Una vez que finalice el comando, cambie `graph-tutorial` al directorio de la CLI y ejecute el siguiente comando para iniciar un servidor Web local.</span><span class="sxs-lookup"><span data-stu-id="974da-102">Once the command finishes, change to the `graph-tutorial` directory in your CLI and run the following command to start a local web server.</span></span>
+<span data-ttu-id="202a2-102">Una vez que finalice el comando, cambie `graph-tutorial` al directorio de la CLI y ejecute el siguiente comando para iniciar un servidor Web local.</span><span class="sxs-lookup"><span data-stu-id="202a2-102">Once the command finishes, change to the `graph-tutorial` directory in your CLI and run the following command to start a local web server.</span></span>
 
 ```Shell
 npm start
 ```
 
-<span data-ttu-id="974da-103">El explorador predeterminado se abre [https://localhost:3000/](https://localhost:3000) en con una página de reAct predeterminada.</span><span class="sxs-lookup"><span data-stu-id="974da-103">Your default browser opens to [https://localhost:3000/](https://localhost:3000) with a default React page.</span></span> <span data-ttu-id="974da-104">Si el explorador no se abre, ábralo y vaya [https://localhost:3000/](https://localhost:3000) a para comprobar que la nueva aplicación funciona.</span><span class="sxs-lookup"><span data-stu-id="974da-104">If your browser doesn't open, open it and browse to [https://localhost:3000/](https://localhost:3000) to verify that the new app works.</span></span>
+<span data-ttu-id="202a2-103">El explorador predeterminado se abre [https://localhost:3000/](https://localhost:3000) en con una página de reAct predeterminada.</span><span class="sxs-lookup"><span data-stu-id="202a2-103">Your default browser opens to [https://localhost:3000/](https://localhost:3000) with a default React page.</span></span> <span data-ttu-id="202a2-104">Si el explorador no se abre, ábralo y vaya [https://localhost:3000/](https://localhost:3000) a para comprobar que la nueva aplicación funciona.</span><span class="sxs-lookup"><span data-stu-id="202a2-104">If your browser doesn't open, open it and browse to [https://localhost:3000/](https://localhost:3000) to verify that the new app works.</span></span>
 
-<span data-ttu-id="974da-105">Antes de continuar, instale algunos paquetes adicionales que usará más adelante:</span><span class="sxs-lookup"><span data-stu-id="974da-105">Before moving on, install some additional packages that you will use later:</span></span>
+<span data-ttu-id="202a2-105">Antes de continuar, instale algunos paquetes adicionales que usará más adelante:</span><span class="sxs-lookup"><span data-stu-id="202a2-105">Before moving on, install some additional packages that you will use later:</span></span>
 
-- <span data-ttu-id="974da-106">[reAct-router-Dom](https://github.com/ReactTraining/react-router) para el enrutamiento declarativo dentro de la aplicación reAct.</span><span class="sxs-lookup"><span data-stu-id="974da-106">[react-router-dom](https://github.com/ReactTraining/react-router) for declarative routing inside the React app.</span></span>
-- <span data-ttu-id="974da-107">[bootstrap](https://github.com/twbs/bootstrap) para aplicar estilos y componentes comunes.</span><span class="sxs-lookup"><span data-stu-id="974da-107">[bootstrap](https://github.com/twbs/bootstrap) for styling and common components.</span></span>
-- <span data-ttu-id="974da-108">[reactstrap](https://github.com/reactstrap/reactstrap) para los componentes de reAct basados en bootstrap.</span><span class="sxs-lookup"><span data-stu-id="974da-108">[reactstrap](https://github.com/reactstrap/reactstrap) for React components based on Bootstrap.</span></span>
-- <span data-ttu-id="974da-109">[fontawesome: libre](https://github.com/FortAwesome/Font-Awesome) para iconos.</span><span class="sxs-lookup"><span data-stu-id="974da-109">[fontawesome-free](https://github.com/FortAwesome/Font-Awesome) for icons.</span></span>
-- <span data-ttu-id="974da-110">[momento](https://github.com/moment/moment) para dar formato a fechas y horas.</span><span class="sxs-lookup"><span data-stu-id="974da-110">[moment](https://github.com/moment/moment) for formatting dates and times.</span></span>
-- <span data-ttu-id="974da-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) para autenticar en Azure Active Directory y recuperar los tokens de acceso.</span><span class="sxs-lookup"><span data-stu-id="974da-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) for authenticating to Azure Active Directory and retrieving access tokens.</span></span>
-- <span data-ttu-id="974da-112">[Microsoft-Graph-Client](https://github.com/microsoftgraph/msgraph-sdk-javascript) para realizar llamadas a Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="974da-112">[microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) for making calls to Microsoft Graph.</span></span>
+- <span data-ttu-id="202a2-106">[reAct-router-Dom](https://github.com/ReactTraining/react-router) para el enrutamiento declarativo dentro de la aplicación reAct.</span><span class="sxs-lookup"><span data-stu-id="202a2-106">[react-router-dom](https://github.com/ReactTraining/react-router) for declarative routing inside the React app.</span></span>
+- <span data-ttu-id="202a2-107">[bootstrap](https://github.com/twbs/bootstrap) para aplicar estilos y componentes comunes.</span><span class="sxs-lookup"><span data-stu-id="202a2-107">[bootstrap](https://github.com/twbs/bootstrap) for styling and common components.</span></span>
+- <span data-ttu-id="202a2-108">[reactstrap](https://github.com/reactstrap/reactstrap) para los componentes de reAct basados en bootstrap.</span><span class="sxs-lookup"><span data-stu-id="202a2-108">[reactstrap](https://github.com/reactstrap/reactstrap) for React components based on Bootstrap.</span></span>
+- <span data-ttu-id="202a2-109">[fontawesome: libre](https://github.com/FortAwesome/Font-Awesome) para iconos.</span><span class="sxs-lookup"><span data-stu-id="202a2-109">[fontawesome-free](https://github.com/FortAwesome/Font-Awesome) for icons.</span></span>
+- <span data-ttu-id="202a2-110">[momento](https://github.com/moment/moment) para dar formato a fechas y horas.</span><span class="sxs-lookup"><span data-stu-id="202a2-110">[moment](https://github.com/moment/moment) for formatting dates and times.</span></span>
+- <span data-ttu-id="202a2-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) para autenticar en Azure Active Directory y recuperar los tokens de acceso.</span><span class="sxs-lookup"><span data-stu-id="202a2-111">[msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) for authenticating to Azure Active Directory and retrieving access tokens.</span></span>
+- <span data-ttu-id="202a2-112">[Microsoft-Graph-Client](https://github.com/microsoftgraph/msgraph-sdk-javascript) para realizar llamadas a Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="202a2-112">[microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) for making calls to Microsoft Graph.</span></span>
 
-<span data-ttu-id="974da-113">Ejecute el siguiente comando en su CLI.</span><span class="sxs-lookup"><span data-stu-id="974da-113">Run the following command in your CLI.</span></span>
+<span data-ttu-id="202a2-113">Ejecute el siguiente comando en su CLI.</span><span class="sxs-lookup"><span data-stu-id="202a2-113">Run the following command in your CLI.</span></span>
 
 ```Shell
-npm install react-router-dom@5.0.0 bootstrap@4.3.1 reactstrap@8.0.0 @fortawesome/fontawesome-free@5.8.2
-npm install moment@2.24.0 msal@1.0.0 @microsoft/microsoft-graph-client@1.6.0
+npm install react-router-dom@5.0.1 bootstrap@4.3.1 reactstrap@8.0.1 @fortawesome/fontawesome-free@5.10.2
+npm install moment@2.24.0 msal@1.1.3 @microsoft/microsoft-graph-client@1.7.0
 ```
 
-## <a name="design-the-app"></a><span data-ttu-id="974da-114">Diseñar la aplicación</span><span class="sxs-lookup"><span data-stu-id="974da-114">Design the app</span></span>
+## <a name="design-the-app"></a><span data-ttu-id="202a2-114">Diseñar la aplicación</span><span class="sxs-lookup"><span data-stu-id="202a2-114">Design the app</span></span>
 
-<span data-ttu-id="974da-115">Empiece por crear una barra de exploración para la aplicación.</span><span class="sxs-lookup"><span data-stu-id="974da-115">Start by creating a navbar for the app.</span></span> <span data-ttu-id="974da-116">Cree un nuevo archivo en el `./src` directorio denominado `Navbar.js` y agregue el siguiente código.</span><span class="sxs-lookup"><span data-stu-id="974da-116">Create a new file in the `./src` directory named `Navbar.js` and add the following code.</span></span>
+<span data-ttu-id="202a2-115">Empiece por crear una barra de exploración para la aplicación.</span><span class="sxs-lookup"><span data-stu-id="202a2-115">Start by creating a navbar for the app.</span></span> <span data-ttu-id="202a2-116">Cree un nuevo archivo en el `./src` directorio denominado `Navbar.js` y agregue el siguiente código.</span><span class="sxs-lookup"><span data-stu-id="202a2-116">Create a new file in the `./src` directory named `Navbar.js` and add the following code.</span></span>
 
 ```JSX
 import React from 'react';
@@ -157,7 +157,7 @@ export default class NavBar extends React.Component {
 }
 ```
 
-<span data-ttu-id="974da-117">A continuación, cree una página principal para la aplicación.</span><span class="sxs-lookup"><span data-stu-id="974da-117">Next, create a home page for the app.</span></span> <span data-ttu-id="974da-118">Cree un nuevo archivo en el `./src` directorio denominado `Welcome.js` y agregue el siguiente código.</span><span class="sxs-lookup"><span data-stu-id="974da-118">Create a new file in the `./src` directory named `Welcome.js` and add the following code.</span></span>
+<span data-ttu-id="202a2-117">A continuación, cree una página principal para la aplicación.</span><span class="sxs-lookup"><span data-stu-id="202a2-117">Next, create a home page for the app.</span></span> <span data-ttu-id="202a2-118">Cree un nuevo archivo en el `./src` directorio denominado `Welcome.js` y agregue el siguiente código.</span><span class="sxs-lookup"><span data-stu-id="202a2-118">Create a new file in the `./src` directory named `Welcome.js` and add the following code.</span></span>
 
 ```JSX
 import React from 'react';
@@ -198,7 +198,7 @@ export default class Welcome extends React.Component {
 }
 ```
 
-<span data-ttu-id="974da-119">Ahora, cree una presentación de mensajes de error para mostrar mensajes al usuario.</span><span class="sxs-lookup"><span data-stu-id="974da-119">Now create an error message display to display messages to the user.</span></span> <span data-ttu-id="974da-120">Cree un nuevo archivo en el `./src` directorio denominado `ErrorMessage.js` y agregue el siguiente código.</span><span class="sxs-lookup"><span data-stu-id="974da-120">Create a new file in the `./src` directory named `ErrorMessage.js` and add the following code.</span></span>
+<span data-ttu-id="202a2-119">Ahora, cree una presentación de mensajes de error para mostrar mensajes al usuario.</span><span class="sxs-lookup"><span data-stu-id="202a2-119">Now create an error message display to display messages to the user.</span></span> <span data-ttu-id="202a2-120">Cree un nuevo archivo en el `./src` directorio denominado `ErrorMessage.js` y agregue el siguiente código.</span><span class="sxs-lookup"><span data-stu-id="202a2-120">Create a new file in the `./src` directory named `ErrorMessage.js` and add the following code.</span></span>
 
 ```JSX
 import React from 'react';
@@ -220,7 +220,7 @@ export default class ErrorMessage extends React.Component {
 }
 ```
 
-<span data-ttu-id="974da-121">Ahora con esos componentes básicos definidos, actualice la aplicación para usarlas.</span><span class="sxs-lookup"><span data-stu-id="974da-121">Now with those basic components defined, update the app to use them.</span></span> <span data-ttu-id="974da-122">En primer lugar, `./src/index.css` Abra el archivo y reemplace todo el contenido por lo siguiente.</span><span class="sxs-lookup"><span data-stu-id="974da-122">First, open the `./src/index.css` file and replace its entire contents with the following.</span></span>
+<span data-ttu-id="202a2-121">Ahora con esos componentes básicos definidos, actualice la aplicación para usarlas.</span><span class="sxs-lookup"><span data-stu-id="202a2-121">Now with those basic components defined, update the app to use them.</span></span> <span data-ttu-id="202a2-122">En primer lugar, `./src/index.css` Abra el archivo y reemplace todo el contenido por lo siguiente.</span><span class="sxs-lookup"><span data-stu-id="202a2-122">First, open the `./src/index.css` file and replace its entire contents with the following.</span></span>
 
 ```css
 body {
@@ -234,7 +234,7 @@ body {
 }
 ```
 
-<span data-ttu-id="974da-123">A continuación, `./src/App.js` abra y reemplace todo el contenido por lo siguiente.</span><span class="sxs-lookup"><span data-stu-id="974da-123">Next, open `./src/App.js` and replace its entire contents with the following.</span></span>
+<span data-ttu-id="202a2-123">A continuación, `./src/App.js` abra y reemplace todo el contenido por lo siguiente.</span><span class="sxs-lookup"><span data-stu-id="202a2-123">Next, open `./src/App.js` and replace its entire contents with the following.</span></span>
 
 ```JSX
 import React, { Component } from 'react';
@@ -294,6 +294,6 @@ class App extends Component {
 export default App;
 ```
 
-<span data-ttu-id="974da-124">Guarde todos los cambios y actualice la página.</span><span class="sxs-lookup"><span data-stu-id="974da-124">Save all of your changes and refresh the page.</span></span> <span data-ttu-id="974da-125">Ahora, la aplicación debe tener un aspecto muy diferente.</span><span class="sxs-lookup"><span data-stu-id="974da-125">Now, the app should look very different.</span></span>
+<span data-ttu-id="202a2-124">Guarde todos los cambios y actualice la página.</span><span class="sxs-lookup"><span data-stu-id="202a2-124">Save all of your changes and refresh the page.</span></span> <span data-ttu-id="202a2-125">Ahora, la aplicación debe tener un aspecto muy diferente.</span><span class="sxs-lookup"><span data-stu-id="202a2-125">Now, the app should look very different.</span></span>
 
 ![Una captura de pantalla de la Página principal rediseñada](images/create-app-01.png)
