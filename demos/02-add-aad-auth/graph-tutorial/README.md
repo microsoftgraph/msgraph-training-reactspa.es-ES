@@ -6,23 +6,23 @@ En el directorio del proyecto, puede ejecutar:
 
 ### `npm start`
 
-Ejecuta la aplicación en el modo de desarrollo.<br>
+Ejecuta la aplicación en el modo de desarrollo.<br />
 Abrir [http://localhost:3000](http://localhost:3000) para verlo en el explorador.
 
-La página se volverá a cargar si realiza modificaciones.<br>
+La página se volverá a cargar si realiza modificaciones.<br />
 También verá los errores de pelusa en la consola.
 
 ### `npm test`
 
-Inicia test Runner en el modo de inspección interactivo.<br>
+Inicia test Runner en el modo de inspección interactivo.<br />
 Vea la sección acerca de la [ejecución de pruebas](https://facebook.github.io/create-react-app/docs/running-tests) para obtener más información.
 
 ### `npm run build`
 
-Crea la aplicación para la producción en `build` la carpeta.<br>
+Crea la aplicación para la producción en `build` la carpeta.<br />
 Agrupa correctamente reAct en modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 
-La compilación es reducidos y los nombres de archivo incluyen los hash.<br>
+La compilación es reducidos y los nombres de archivo incluyen los hash.<br />
 La aplicación está lista para implementarse.
 
 Vea la sección acerca de la [implementación](https://facebook.github.io/create-react-app/docs/deployment) para obtener más información.
@@ -42,3 +42,27 @@ No es necesario que use `eject`nunca. El conjunto de características de creados
 Puede obtener más información en la [documentación de Create reAct App](https://facebook.github.io/create-react-app/docs/getting-started).
 
 Para obtener información sobre reAct, consulte la [documentación de reAct](https://reactjs.org/).
+
+### <a name="code-splitting"></a>División de código
+
+Esta sección se ha movido aquí:https://facebook.github.io/create-react-app/docs/code-splitting
+
+### <a name="analyzing-the-bundle-size"></a>Analizar el tamaño del paquete
+
+Esta sección se ha movido aquí:https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### <a name="making-a-progressive-web-app"></a>Creación de una aplicación web progresiva
+
+Esta sección se ha movido aquí:https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### <a name="advanced-configuration"></a>Configuración avanzada
+
+Esta sección se ha movido aquí:https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### <a name="deployment"></a>Implementación
+
+Esta sección se ha movido aquí:https://facebook.github.io/create-react-app/docs/deployment
+
+### <a name="npm-run-build-fails-to-minify"></a>`npm run build`no se puede reducir archivos
+
+Esta sección se ha movido aquí:https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

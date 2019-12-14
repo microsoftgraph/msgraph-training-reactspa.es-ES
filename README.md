@@ -10,7 +10,7 @@ En este laboratorio, creará una aplicación reAct de página única, configurad
 
 ## <a name="demos"></a>Demostraciones
 
-El [](./demos) directorio demos de este repositorio contiene copias del proyecto que corresponden a la realización de secciones individuales del tutorial. Si solo quiere demostrar una sección concreta del tutorial, puede comenzar con la versión de la sección anterior.
+El directorio [demos](./demos) de este repositorio contiene copias del proyecto que corresponden a la realización de secciones individuales del tutorial. Si solo quiere demostrar una sección concreta del tutorial, puede comenzar con la versión de la sección anterior.
 
 - [01-Create-App](demos/01-create-app): [creación de una aplicación reAct de una sola página](https://docs.microsoft.com/graph/training/react-tutorial?tutorial-step=1)
 - [02-Add-AAD-auth](demos/02-add-aad-auth): [adición de autenticación de Azure ad](https://docs.microsoft.com/graph/training/react-tutorial?tutorial-step=3) completada
@@ -39,8 +39,9 @@ Este módulo se ha registrado y está disponible en el canal de YouTube de desar
 
 | Versión |       Fecha       |              Comentarios              |
 | ------- | ---------------- | ---------------------------------- |
+| 1.7     | 3 de diciembre de 2019 | Actualizar a la versión más reciente del SDK de Graph y`create-react-app` |
 | 1.6     | 18 de junio de 2019    | Vínculo agregado a la grabación del screencast |
-| 1.5     | 24 de mayo de 2019     | actualización del contenido de 2019Q4             |
+| 1,5     | 24 de mayo de 2019     | actualización del contenido de 2019Q4             |
 | 1.4     | 22 de mayo de 2019     | Actualizaciones de QuickStart                 |
 | 1.3     | 16 de mayo de 2019     | Pasos de registro de aplicaciones de AAD actualizados |
 | 1.2     | 6 de marzo de 2019    | actualización del contenido de 2019Q3             |

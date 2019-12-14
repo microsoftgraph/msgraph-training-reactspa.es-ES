@@ -8,6 +8,9 @@ En este ejercicio, creará un nuevo registro de aplicaciones Web de Azure AD con
 
     ![Una captura de pantalla de los registros de la aplicación ](./images/aad-portal-app-registrations.png)
 
+    > [!NOTE]
+    > Los usuarios de Azure AD B2C solo pueden ver los registros de la **aplicación (heredados)**. En este caso, vaya directamente a [https://aka.ms/appregistrations](https://aka.ms/appregistrations).
+
 1. Seleccione **Nuevo registro**. En la página **Registrar una aplicación**, establezca los valores siguientes.
 
     - Establezca **Nombre** como `React Graph Tutorial`.
@@ -20,6 +23,6 @@ En este ejercicio, creará un nuevo registro de aplicaciones Web de Azure AD con
 
     ![Captura de pantalla del identificador de la aplicación del nuevo registro de la aplicación](./images/aad-application-id.png)
 
-1. Seleccione **Autenticación** en **Administrar**. Busque la sección **concesión implícita** y habilite **tokens de acceso** y tokens de **identificador**. Elija **Guardar**.
+1. Seleccione **Autenticación** en **Administrar**. Busque la sección **concesión implícita** y habilite **tokens de acceso** y **tokens de identificador**. Elija **Guardar**.
 
     ![Captura de pantalla de la sección de concesión implícita](./images/aad-implicit-grant.png)
