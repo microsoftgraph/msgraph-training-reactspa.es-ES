@@ -8,19 +8,11 @@ En este laboratorio, creará una aplicación reAct de página única, configurad
 
 - [Reaccionar el tutorial de Microsoft Graph](https://docs.microsoft.com/graph/training/react-tutorial)
 
-## <a name="demos"></a>Demostraciones
-
-El directorio [demos](./demos) de este repositorio contiene copias del proyecto que corresponden a la realización de secciones individuales del tutorial. Si solo quiere demostrar una sección concreta del tutorial, puede comenzar con la versión de la sección anterior.
-
-- [01-Create-App](demos/01-create-app): [creación de una aplicación reAct de una sola página](https://docs.microsoft.com/graph/training/react-tutorial?tutorial-step=1)
-- [02-Add-AAD-auth](demos/02-add-aad-auth): [adición de autenticación de Azure ad](https://docs.microsoft.com/graph/training/react-tutorial?tutorial-step=3) completada
-- [03-Add-MSGraph](demos/03-add-msgraph): [obtener datos de calendario](https://docs.microsoft.com/graph/training/react-tutorial?tutorial-step=4) completados
-
 ## <a name="completed-sample"></a>Ejemplo completado
 
 Si solo quiere el ejemplo completado que se genera siguiendo este laboratorio, puede encontrarlo aquí.
 
-- [Proyecto completado](demos/03-add-msgraph)
+- [Proyecto completado](demo)
 
 ## <a name="watch-the-module"></a>Ver el módulo
 
@@ -39,6 +31,7 @@ Este módulo se ha registrado y está disponible en el canal de YouTube de desar
 
 | Versión |       Fecha       |              Comentarios              |
 | ------- | ---------------- | ---------------------------------- |
+| 1.8     | 19 de marzo de 2020   | Actualizar tutorial                   |
 | 1.7     | 3 de diciembre de 2019 | Actualizar a la versión más reciente del SDK de Graph y`create-react-app` |
 | 1.6     | 18 de junio de 2019    | Vínculo agregado a la grabación del screencast |
 | 1,5     | 24 de mayo de 2019     | actualización del contenido de 2019Q4             |
