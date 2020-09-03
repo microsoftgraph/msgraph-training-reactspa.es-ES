@@ -6,34 +6,35 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
 
 1. Abra `./src/GraphService.ts` y agregue la siguiente función.
 
-    :::code language="typescript" source="../demo/graph-tutorial/src/GraphService.ts" id="getEventsSnippet":::
+    :::code language="typescript" source="../demo/graph-tutorial/src/GraphService.ts" id="getUserWeekCalendarSnippet":::
 
     Tenga en cuenta lo que está haciendo este código.
 
-    - La dirección URL a la que se `/me/events`llamará es.
+    - La dirección URL a la que se llamará es `/me/calendarview` .
+    - El `header` método agrega el `Prefer: outlook.timezone=""` encabezado a la solicitud, lo que provoca que las horas de la respuesta estén en la zona horaria preferida del usuario.
+    - El `query` método agrega los `startDateTime` `endDateTime` parámetros y, que define la ventana de tiempo para la vista de calendario.
     - El `select` método limita los campos devueltos para cada evento a solo aquellos que la vista usará realmente.
     - El `orderby` método ordena los resultados por la fecha y hora en que se crearon, con el elemento más reciente en primer lugar.
+    - El `top` método limita los resultados a los primeros 50 eventos.
+    - Si la respuesta contiene un `@odata.nextLink` valor, lo que indica que hay más resultados disponibles, `PageIterator` se utiliza un objeto para recorrer en una [página la colección](https://docs.microsoft.com/graph/sdks/paging?tabs=typeScript) y obtener todos los resultados.
 
 1. Cree un componente de reAct para mostrar los resultados de la llamada. Cree un nuevo archivo en el `./src` directorio denominado `Calendar.tsx` y agregue el siguiente código.
 
     ```typescript
     import React from 'react';
+    import { NavLink as RouterNavLink } from 'react-router-dom';
     import { Table } from 'reactstrap';
-    import moment from 'moment';
+    import moment from 'moment-timezone';
+    import { findOneIana } from "windows-iana";
     import { Event } from 'microsoft-graph';
     import { config } from './Config';
-    import { getEvents } from './GraphService';
+    import { getUserWeekCalendar } from './GraphService';
     import withAuthProvider, { AuthComponentProps } from './AuthProvider';
 
     interface CalendarState {
+      eventsLoaded: boolean;
       events: Event[];
-    }
-
-    // Helper function to format Graph date/time
-    function formatDateTime(dateTime: string | undefined) {
-      if (dateTime !== undefined) {
-        return moment.utc(dateTime).local().format('M/D/YY h:mm A');
-      }
+      startOfWeek: Moment | undefined;
     }
 
     class Calendar extends React.Component<AuthComponentProps, CalendarState> {
@@ -41,18 +42,35 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
         super(props);
 
         this.state = {
-          events: []
+          eventsLoaded: false,
+          events: [],
+          startOfWeek: undefined
         };
       }
 
-      async componentDidMount() {
+      async componentDidUpdate() {
         try {
           // Get the user's access token
           var accessToken = await this.props.getAccessToken(config.scopes);
+          // Convert user's Windows time zone ("Pacific Standard Time")
+          // to IANA format ("America/Los_Angeles")
+          // Moment needs IANA format
+          var ianaTimeZone = findOneIana(this.props.user.timeZone);
+
+          // Get midnight on the start of the current week in the user's timezone,
+          // but in UTC. For example, for Pacific Standard Time, the time value would be
+          // 07:00:00Z
+          var startOfWeek = moment.tz(ianaTimeZone!.valueOf()).startOf('week').utc();
+
           // Get the user's events
-          var events = await getEvents(accessToken);
+          var events = await getUserWeekCalendar(accessToken, this.props.user.timeZone, startOfWeek);
+
           // Update the array of events in state
-          this.setState({events: events.value});
+          this.setState({
+            eventsLoaded: true,
+            events: events,
+            startOfWeek: startOfWeek
+          });
         }
         catch(err) {
           this.props.setError('ERROR', JSON.stringify(err));
@@ -77,7 +95,7 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
     import Calendar from './Calendar';
     ```
 
-1. Agregue el siguiente componente justo después del existente `<Route>`.
+1. Agregue el siguiente componente justo después del existente `<Route>` .
 
     ```typescript
     <Route exact path="/calendar"
@@ -94,11 +112,26 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
 
 Ahora puede actualizar el `Calendar` componente para mostrar los eventos de forma más fácil de uso.
 
-1. Reemplace la función `render` existente en `./src/Calendar.js` con la siguiente función.
+1. Cree un nuevo archivo en el `./src` directorio denominado `Calendar.css` y agregue el siguiente código.
+
+    :::code language="css" source="../demo/graph-tutorial/src/Calendar.css":::
+
+1. Cree un componente reAct para representar eventos en un solo día como filas de tabla. Cree un nuevo archivo en el `./src` directorio denominado `CalendarDayRow.tsx` y agregue el siguiente código.
+
+    :::code language="typescript" source="../demo/graph-tutorial/src/CalendarDayRow.tsx" id="CalendarDayRowSnippet":::
+
+1. Agregue las siguientes `import` instrucciones en la parte superior del **calendario. TSX**.
+
+    ```typescript
+    import CalendarDayRow from './CalendarDayRow';
+    import './Calendar.css';
+    ```
+
+1. Reemplace la `render` función existente en `./src/Calendar.tsx` con la siguiente función.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/Calendar.tsx" id="renderSnippet":::
 
-    Esto recorre la colección de eventos y agrega una fila de tabla para cada uno.
+    Esto divide los eventos en sus días respectivos y representa una sección de tabla para cada día.
 
 1. Guarde los cambios y reinicie la aplicación. Haga clic en el vínculo del **calendario** y la aplicación ahora debe representar una tabla de eventos.
 

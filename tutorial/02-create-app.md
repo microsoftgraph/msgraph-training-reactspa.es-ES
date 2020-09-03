@@ -5,16 +5,16 @@ En esta sección, creará una nueva aplicación reAct.
 1. Abra la interfaz de línea de comandos (CLI), vaya a un directorio donde tenga derechos para crear archivos y ejecute los siguientes comandos para crear una nueva aplicación reAct.
 
     ```Shell
-    npx create-react-app@3.4.0 graph-tutorial --template typescript
+    npx create-react-app@3.4.1 graph-tutorial --template typescript
     ```
 
-1. Una vez que finalice el comando, cambie `graph-tutorial` al directorio de la CLI y ejecute el siguiente comando para iniciar un servidor Web local.
+1. Una vez que finalice el comando, cambie al `graph-tutorial` Directorio de la CLI y ejecute el siguiente comando para iniciar un servidor Web local.
 
     ```Shell
     npm start
     ```
 
-El explorador predeterminado se abre [https://localhost:3000/](https://localhost:3000) en con una página de reAct predeterminada. Si el explorador no se abre, ábralo y vaya [https://localhost:3000/](https://localhost:3000) a para comprobar que la nueva aplicación funciona.
+El explorador predeterminado se abre en [https://localhost:3000/](https://localhost:3000) con una página de reAct predeterminada. Si el explorador no se abre, ábralo y vaya a [https://localhost:3000/](https://localhost:3000) para comprobar que la nueva aplicación funciona.
 
 ## <a name="add-node-packages"></a>Agregar paquetes de nodo
 
@@ -25,14 +25,15 @@ Antes de continuar, instale algunos paquetes adicionales que usará más adelant
 - [reactstrap](https://github.com/reactstrap/reactstrap) para los componentes de reAct basados en bootstrap.
 - [fontawesome: libre](https://github.com/FortAwesome/Font-Awesome) para iconos.
 - [momento](https://github.com/moment/moment) para dar formato a fechas y horas.
-- [msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) para autenticar en Azure Active Directory y recuperar los tokens de acceso.
+- [Windows-IANA](https://github.com/rubenillodo/windows-iana) para traducir zonas horarias de Windows al formato IANA.
+- [msal-explorador](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) para autenticar en Azure Active Directory y recuperar los tokens de acceso.
 - [Microsoft-Graph-Client](https://github.com/microsoftgraph/msgraph-sdk-javascript) para realizar llamadas a Microsoft Graph.
 
 Ejecute el siguiente comando en su CLI.
 
 ```Shell
-npm install react-router-dom@5.1.2 @types/react-router-dom@5.1.3 bootstrap@4.4.1 reactstrap@8.4.1 @types/reactstrap@8.4.2
-npm install @fortawesome/fontawesome-free@5.12.1 moment@2.24.0 msal@1.2.1 @microsoft/microsoft-graph-client@2.0.0 @types/microsoft-graph@1.12.0
+npm install react-router-dom@5.2.0 @types/react-router-dom@5.1.5 bootstrap@4.5.2 reactstrap@8.5.1 @types/reactstrap@8.5.1 @fortawesome/fontawesome-free@5.14.0
+npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-browser@2.1.0 @microsoft/microsoft-graph-client@2.0.0 @types/microsoft-graph@1.18.0
 ```
 
 ## <a name="design-the-app"></a>Diseñar la aplicación

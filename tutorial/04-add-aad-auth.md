@@ -4,7 +4,7 @@ En este ejercicio, ampliará la aplicación del ejercicio anterior para admitir 
 
 1. Cree un nuevo archivo en el `./src` directorio denominado `Config.ts` y agregue el siguiente código.
 
-    :::code language="typescript" source="../demo/graph-tutorial/src/Config.ts.example":::
+    :::code language="typescript" source="../demo/graph-tutorial/src/Config.example.ts":::
 
     Reemplace `YOUR_APP_ID_HERE` por el identificador de la aplicación del portal de registro de aplicaciones.
 
@@ -19,7 +19,7 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
 
     ```typescript
     import React from 'react';
-    import { UserAgentApplication } from 'msal';
+    import { PublicClientApplication } from '@azure/msal-browser';
 
     import { config } from './Config';
 
@@ -42,7 +42,7 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
     export default function withAuthProvider<T extends React.Component<AuthComponentProps>>
       (WrappedComponent: new(props: AuthComponentProps, context?: any) => T): React.ComponentClass {
       return class extends React.Component<any, AuthProviderState> {
-        private userAgentApplication: UserAgentApplication;
+        private publicClientApplication: PublicClientApplication;
 
         constructor(props: any) {
           super(props);
@@ -53,7 +53,7 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
           };
 
           // Initialize the MSAL application object
-          this.userAgentApplication = new UserAgentApplication({
+          this.publicClientApplication = new PublicClientApplication({
             auth: {
                 clientId: config.appId,
                 redirectUri: config.redirectUri
@@ -68,9 +68,9 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
         componentDidMount() {
           // If MSAL already has an account, the user
           // is already logged in
-          var account = this.userAgentApplication.getAccount();
+          const accounts = this.publicClientApplication.getAllAccounts();
 
-          if (account) {
+          if (accounts && accounts.length > 0) {
             // Enhance user object with data from Graph
             this.getUserProfile();
           }
@@ -91,11 +91,12 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
         async login() {
           try {
             // Login via popup
-            await this.userAgentApplication.loginPopup(
+            await this.publicClientApplication.loginPopup(
                 {
                   scopes: config.scopes,
                   prompt: "select_account"
               });
+
             // After login, get the user's profile
             await this.getUserProfile();
           }
@@ -109,27 +110,34 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
         }
 
         logout() {
-          this.userAgentApplication.logout();
+          this.publicClientApplication.logout();
         }
 
         async getAccessToken(scopes: string[]): Promise<string> {
           try {
+            const accounts = this.publicClientApplication
+              .getAllAccounts();
+
+            if (accounts.length <= 0) throw new Error('login_required');
             // Get the access token silently
             // If the cache contains a non-expired token, this function
             // will just return the cached token. Otherwise, it will
             // make a request to the Azure OAuth endpoint to get a token
-            var silentResult = await this.userAgentApplication.acquireTokenSilent({
-              scopes: scopes
-            });
+            var silentResult = await this.publicClientApplication
+                .acquireTokenSilent({
+                  scopes: scopes,
+                  account: accounts[0]
+                });
 
             return silentResult.accessToken;
           } catch (err) {
             // If a silent request fails, it may be because the user needs
             // to login or grant consent to one or more of the requested scopes
             if (this.isInteractionRequired(err)) {
-              var interactiveResult = await this.userAgentApplication.acquireTokenPopup({
-                scopes: scopes
-              });
+              var interactiveResult = await this.publicClientApplication
+                  .acquireTokenPopup({
+                    scopes: scopes
+                  });
 
               return interactiveResult.accessToken;
             } else {
@@ -189,7 +197,8 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
           return (
             error.message.indexOf('consent_required') > -1 ||
             error.message.indexOf('interaction_required') > -1 ||
-            error.message.indexOf('login_required') > -1
+            error.message.indexOf('login_required') > -1 ||
+            error.message.indexOf('no_account_in_silent_request') > -1
           );
         }
       }
@@ -214,7 +223,7 @@ En esta sección, creará un proveedor de autenticación e implementará el inic
     export default withAuthProvider(App);
     ```
 
-1. Guarde los cambios y actualice el explorador. Haga clic en el botón de inicio de sesión y se le `https://login.microsoftonline.com`redirigirá a. Inicie sesión con su cuenta de Microsoft y dé su consentimiento a los permisos solicitados. La página de la aplicación debe actualizarse y mostrar el token.
+1. Guarde los cambios y actualice el explorador. Haga clic en el botón de inicio de sesión y verá una ventana emergente que se cargará `https://login.microsoftonline.com` . Inicie sesión con su cuenta de Microsoft y dé su consentimiento a los permisos solicitados. La página de la aplicación debe actualizarse y mostrar el token.
 
 ### <a name="get-user-details"></a>Obtener detalles del usuario
 
@@ -234,7 +243,7 @@ En esta sección, obtendrá los detalles del usuario de Microsoft Graph.
 
 1. Reemplace la función `getUserProfile` existente por el siguiente código.
 
-    :::code language="typescript" source="../demo/graph-tutorial/src/AuthProvider.tsx" id="getUserProfileSnippet" highlight="6-15":::
+    :::code language="typescript" source="../demo/graph-tutorial/src/AuthProvider.tsx" id="getUserProfileSnippet" highlight="6-18":::
 
 1. Guarde los cambios e inicie la aplicación, después de iniciar sesión, debe terminar de nuevo en la Página principal, pero la interfaz de usuario debe cambiar para indicar que ha iniciado sesión.
 
@@ -246,8 +255,8 @@ En esta sección, obtendrá los detalles del usuario de Microsoft Graph.
 
 ## <a name="storing-and-refreshing-tokens"></a>Almacenamiento y actualización de tokens
 
-En este punto, la aplicación tiene un token de acceso, que se envía `Authorization` en el encabezado de las llamadas a la API. Este es el token que permite que la aplicación tenga acceso a Microsoft Graph en nombre del usuario.
+En este punto, la aplicación tiene un token de acceso, que se envía en el `Authorization` encabezado de las llamadas a la API. Este es el token que permite que la aplicación tenga acceso a Microsoft Graph en nombre del usuario.
 
 Sin embargo, este token es de corta duración. El token expira una hora después de su emisión. Aquí es donde el token de actualización se vuelve útil. El token de actualización permite que la aplicación solicite un nuevo token de acceso sin que el usuario tenga que iniciar sesión de nuevo.
 
-Debido a que la aplicación usa la biblioteca de MSAL, no tiene que implementar ninguna lógica de almacenamiento o actualización de tokens. El `UserAgentApplication` almacena en caché el token en la sesión del explorador. El `acquireTokenSilent` método comprueba primero el token almacenado en caché y, si no lo ha expirado, lo devuelve. Si ha expirado, usa el token de actualización almacenado en caché para obtener uno nuevo. Este método se utilizará más en el siguiente módulo.
+Debido a que la aplicación usa la biblioteca de MSAL, no tiene que implementar ninguna lógica de almacenamiento o actualización de tokens. El `PublicClientApplication` almacena en caché el token en la sesión del explorador. El `acquireTokenSilent` método comprueba primero el token almacenado en caché y, si no lo ha expirado, lo devuelve. Si ha expirado, usa el token de actualización almacenado en caché para obtener uno nuevo. Este método se utilizará más en el siguiente módulo.
