@@ -24,7 +24,7 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
     import React from 'react';
     import { NavLink as RouterNavLink } from 'react-router-dom';
     import { Table } from 'reactstrap';
-    import moment from 'moment-timezone';
+    import moment, { Moment } from 'moment-timezone';
     import { findOneIana } from "windows-iana";
     import { Event } from 'microsoft-graph';
     import { config } from './Config';
@@ -120,7 +120,7 @@ Ahora puede actualizar el `Calendar` componente para mostrar los eventos de form
 
     :::code language="typescript" source="../demo/graph-tutorial/src/CalendarDayRow.tsx" id="CalendarDayRowSnippet":::
 
-1. Agregue las siguientes `import` instrucciones en la parte superior del **calendario. TSX**.
+1. Agregue las siguientes `import` instrucciones en la parte superior del **calendario. TSX** .
 
     ```typescript
     import CalendarDayRow from './CalendarDayRow';
