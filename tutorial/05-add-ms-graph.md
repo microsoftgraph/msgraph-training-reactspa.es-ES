@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta aplicación, usará la biblioteca de [Microsoft-Graph-Client](https://github.com/microsoftgraph/msgraph-sdk-javascript) para realizar llamadas a Microsoft Graph.
+En este ejercicio incorporará Microsoft Graph en la aplicación. Para esta aplicación, usará la biblioteca [de microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) para realizar llamadas a Microsoft Graph.
 
 ## <a name="get-calendar-events-from-outlook"></a>Obtener eventos de calendario de Outlook
 
@@ -8,17 +8,17 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
 
     :::code language="typescript" source="../demo/graph-tutorial/src/GraphService.ts" id="getUserWeekCalendarSnippet":::
 
-    Tenga en cuenta lo que está haciendo este código.
+    Ten en cuenta lo que hace este código.
 
     - La dirección URL a la que se llamará es `/me/calendarview` .
-    - El `header` método agrega el `Prefer: outlook.timezone=""` encabezado a la solicitud, lo que provoca que las horas de la respuesta estén en la zona horaria preferida del usuario.
-    - El `query` método agrega los `startDateTime` `endDateTime` parámetros y, que define la ventana de tiempo para la vista de calendario.
+    - El método agrega el encabezado a la solicitud, lo que hace que las horas de la respuesta se den en la zona horaria preferida `header` `Prefer: outlook.timezone=""` del usuario.
+    - El `query` método agrega los parámetros y define la ventana de tiempo para la vista de `startDateTime` `endDateTime` calendario.
     - El `select` método limita los campos devueltos para cada evento a solo aquellos que la vista usará realmente.
-    - El `orderby` método ordena los resultados por la fecha y hora en que se crearon, con el elemento más reciente en primer lugar.
-    - El `top` método limita los resultados a los primeros 50 eventos.
-    - Si la respuesta contiene un `@odata.nextLink` valor, lo que indica que hay más resultados disponibles, `PageIterator` se utiliza un objeto para recorrer en una [página la colección](https://docs.microsoft.com/graph/sdks/paging?tabs=typeScript) y obtener todos los resultados.
+    - El método ordena los resultados por la fecha y hora en que se crearon, siendo el `orderby` elemento más reciente el primero.
+    - El `top` método limita los resultados en una sola página a 25 eventos.
+    - Si la respuesta contiene un valor que indica que hay más resultados disponibles, se usa un objeto para paginar la colección para obtener todos `@odata.nextLink` `PageIterator` los resultados. [](https://docs.microsoft.com/graph/sdks/paging?tabs=typeScript)
 
-1. Cree un componente de reAct para mostrar los resultados de la llamada. Cree un nuevo archivo en el `./src` directorio denominado `Calendar.tsx` y agregue el siguiente código.
+1. Cree un componente de React para mostrar los resultados de la llamada. Cree un nuevo archivo en el `./src` directorio denominado y agregue el siguiente `Calendar.tsx` código.
 
     ```typescript
     import React from 'react';
@@ -49,31 +49,35 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
       }
 
       async componentDidUpdate() {
-        try {
-          // Get the user's access token
-          var accessToken = await this.props.getAccessToken(config.scopes);
-          // Convert user's Windows time zone ("Pacific Standard Time")
-          // to IANA format ("America/Los_Angeles")
-          // Moment needs IANA format
-          var ianaTimeZone = findOneIana(this.props.user.timeZone);
+        if (this.props.user && !this.state.eventsLoaded)
+        {
+          try {
+            // Get the user's access token
+            var accessToken = await this.props.getAccessToken(config.scopes);
 
-          // Get midnight on the start of the current week in the user's timezone,
-          // but in UTC. For example, for Pacific Standard Time, the time value would be
-          // 07:00:00Z
-          var startOfWeek = moment.tz(ianaTimeZone!.valueOf()).startOf('week').utc();
+            // Convert user's Windows time zone ("Pacific Standard Time")
+            // to IANA format ("America/Los_Angeles")
+            // Moment needs IANA format
+            var ianaTimeZone = findOneIana(this.props.user.timeZone);
 
-          // Get the user's events
-          var events = await getUserWeekCalendar(accessToken, this.props.user.timeZone, startOfWeek);
+            // Get midnight on the start of the current week in the user's timezone,
+            // but in UTC. For example, for Pacific Standard Time, the time value would be
+            // 07:00:00Z
+            var startOfWeek = moment.tz(ianaTimeZone!.valueOf()).startOf('week').utc();
 
-          // Update the array of events in state
-          this.setState({
-            eventsLoaded: true,
-            events: events,
-            startOfWeek: startOfWeek
-          });
-        }
-        catch(err) {
-          this.props.setError('ERROR', JSON.stringify(err));
+            // Get the user's events
+            var events = await getUserWeekCalendar(accessToken, this.props.user.timeZone, startOfWeek);
+
+            // Update the array of events in state
+            this.setState({
+              eventsLoaded: true,
+              events: events,
+              startOfWeek: startOfWeek
+            });
+          }
+          catch (err) {
+            this.props.setError('ERROR', JSON.stringify(err));
+          }
         }
       }
 
@@ -89,13 +93,13 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
 
     Por ahora, esto solo representa la matriz de eventos en JSON en la página.
 
-1. Agregue este nuevo componente a la aplicación. Abra `./src/App.tsx` y agregue la siguiente `import` instrucción a la parte superior del archivo.
+1. Agrega este nuevo componente a la aplicación. Abra `./src/App.tsx` y agregue la siguiente instrucción en la parte superior del `import` archivo.
 
     ```typescript
     import Calendar from './Calendar';
     ```
 
-1. Agregue el siguiente componente justo después del existente `<Route>` .
+1. Agregue el componente siguiente justo después de la `<Route>` existente.
 
     ```typescript
     <Route exact path="/calendar"
@@ -106,33 +110,33 @@ En este ejercicio, incorporará Microsoft Graph a la aplicación. Para esta apli
       } />
     ```
 
-1. Guarde los cambios y reinicie la aplicación. Inicie sesión y haga clic en el vínculo de **calendario** en la barra de navegación. Si todo funciona, debería ver un volcado JSON de eventos en el calendario del usuario.
+1. Guarde los cambios y reinicie la aplicación. Inicie sesión y haga clic en el **vínculo** Calendario de la barra de navegación. Si todo funciona, debería ver un volcado JSON de eventos en el calendario del usuario.
 
 ## <a name="display-the-results"></a>Mostrar los resultados
 
-Ahora puede actualizar el `Calendar` componente para mostrar los eventos de forma más fácil de uso.
+Ahora puede actualizar el componente para mostrar los eventos de una `Calendar` manera más fácil de usar.
 
-1. Cree un nuevo archivo en el `./src` directorio denominado `Calendar.css` y agregue el siguiente código.
+1. Cree un nuevo archivo en el `./src` directorio denominado y agregue el siguiente `Calendar.css` código.
 
     :::code language="css" source="../demo/graph-tutorial/src/Calendar.css":::
 
-1. Cree un componente reAct para representar eventos en un solo día como filas de tabla. Cree un nuevo archivo en el `./src` directorio denominado `CalendarDayRow.tsx` y agregue el siguiente código.
+1. Cree un componente de React para representar eventos en un solo día como filas de tabla. Cree un nuevo archivo en el `./src` directorio denominado y agregue el siguiente `CalendarDayRow.tsx` código.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/CalendarDayRow.tsx" id="CalendarDayRowSnippet":::
 
-1. Agregue las siguientes `import` instrucciones en la parte superior del **calendario. TSX** .
+1. Agregue las siguientes `import` instrucciones a la parte superior de **Calendar.tsx**.
 
     ```typescript
     import CalendarDayRow from './CalendarDayRow';
     import './Calendar.css';
     ```
 
-1. Reemplace la `render` función existente en `./src/Calendar.tsx` con la siguiente función.
+1. Reemplace la función `render` existente por la siguiente `./src/Calendar.tsx` función.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/Calendar.tsx" id="renderSnippet":::
 
-    Esto divide los eventos en sus días respectivos y representa una sección de tabla para cada día.
+    Esto divide los eventos en sus respectivos días y representa una sección de tabla para cada día.
 
-1. Guarde los cambios y reinicie la aplicación. Haga clic en el vínculo del **calendario** y la aplicación ahora debe representar una tabla de eventos.
+1. Guarda los cambios y reinicia la aplicación. Haz clic en **el vínculo** Calendario y la aplicación ahora debería representar una tabla de eventos.
 
     ![Captura de pantalla de la tabla de eventos](./images/add-msgraph-01.png)

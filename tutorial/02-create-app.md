@@ -1,54 +1,57 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-En esta sección, creará una nueva aplicación reAct.
+En esta sección crearás una nueva aplicación de React.
 
-1. Abra la interfaz de línea de comandos (CLI), vaya a un directorio donde tenga derechos para crear archivos y ejecute los siguientes comandos para crear una nueva aplicación reAct.
-
-    ```Shell
-    npx create-react-app@3.4.1 graph-tutorial --template typescript
-    ```
-
-1. Una vez que finalice el comando, cambie al `graph-tutorial` Directorio de la CLI y ejecute el siguiente comando para iniciar un servidor Web local.
+1. Abre la interfaz de línea de comandos (CLI), navega a un directorio donde tienes derechos para crear archivos y ejecuta los siguientes comandos para crear una nueva aplicación de React.
 
     ```Shell
-    npm start
+    npx create-react-app@4.0.1 graph-tutorial --template typescript
     ```
 
-El explorador predeterminado se abre en [https://localhost:3000/](https://localhost:3000) con una página de reAct predeterminada. Si el explorador no se abre, ábralo y vaya a [https://localhost:3000/](https://localhost:3000) para comprobar que la nueva aplicación funciona.
+1. Una vez que finalice el comando, cambie al directorio de la CLI y `graph-tutorial` ejecute el siguiente comando para iniciar un servidor web local.
+
+    ```Shell
+    yarn start
+    ```
+
+    > [!NOTE]
+    > Si no tienes [instalado El hilo,](https://yarnpkg.com/) puedes usarlo `npm start` en su lugar.
+
+El explorador predeterminado se abre [https://localhost:3000/](https://localhost:3000) con una página de React predeterminada. Si el explorador no se abre, ábralo y vaya para [https://localhost:3000/](https://localhost:3000) comprobar que la nueva aplicación funciona.
 
 ## <a name="add-node-packages"></a>Agregar paquetes de nodo
 
-Antes de continuar, instale algunos paquetes adicionales que usará más adelante:
+Antes de seguir adelante, instala algunos paquetes adicionales que usarás más adelante:
 
-- [reAct-router-Dom](https://github.com/ReactTraining/react-router) para el enrutamiento declarativo dentro de la aplicación reAct.
-- [bootstrap](https://github.com/twbs/bootstrap) para aplicar estilos y componentes comunes.
-- [reactstrap](https://github.com/reactstrap/reactstrap) para los componentes de reAct basados en bootstrap.
-- [fontawesome: libre](https://github.com/FortAwesome/Font-Awesome) para iconos.
+- [react-router-dom](https://github.com/ReactTraining/react-router) para el enrutamiento declarativo dentro de la aplicación React.
+- [arranque](https://github.com/twbs/bootstrap) de estilos y componentes comunes.
+- [reactstrap para](https://github.com/reactstrap/reactstrap) componentes de React basados en Bootstrap.
+- [fontawesome-free](https://github.com/FortAwesome/Font-Awesome) para iconos.
 - [momento](https://github.com/moment/moment) para dar formato a fechas y horas.
-- [Windows-IANA](https://github.com/rubenillodo/windows-iana) para traducir zonas horarias de Windows al formato IANA.
-- [msal-explorador](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) para autenticar en Azure Active Directory y recuperar los tokens de acceso.
-- [Microsoft-Graph-Client](https://github.com/microsoftgraph/msgraph-sdk-javascript) para realizar llamadas a Microsoft Graph.
+- [windows-iana](https://github.com/rubenillodo/windows-iana) para traducir zonas horarias de Windows al formato IANA.
+- [msal-browser para](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) autenticarse en Azure Active Directory y recuperar tokens de acceso.
+- [microsoft-graph-client para](https://github.com/microsoftgraph/msgraph-sdk-javascript) realizar llamadas a Microsoft Graph.
 
-Ejecute el siguiente comando en su CLI.
+Ejecute el siguiente comando en la CLI.
 
 ```Shell
-npm install react-router-dom@5.2.0 @types/react-router-dom@5.1.5 bootstrap@4.5.2 reactstrap@8.5.1 @types/reactstrap@8.5.1 @fortawesome/fontawesome-free@5.14.0
-npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-browser@2.1.0 @microsoft/microsoft-graph-client@2.0.0 @types/microsoft-graph@1.18.0
+yarn add react-router-dom@5.2.0 @types/react-router-dom@5.1.7 bootstrap@4.6.0 reactstrap@8.9.0 @types/reactstrap@8.7.2 @fortawesome/fontawesome-free@5.15.2
+yarn add moment@2.29.1 moment-timezone@0.5.32 windows-iana@4.2.1 @azure/msal-browser@2.10.0 @microsoft/microsoft-graph-client@2.2.1 @types/microsoft-graph@1.28.0
 ```
 
 ## <a name="design-the-app"></a>Diseñar la aplicación
 
-Empiece por crear una barra de exploración para la aplicación.
+Empieza creando una barra de navegación para la aplicación.
 
-1. Cree un nuevo archivo en el `./src` directorio denominado `NavBar.tsx` y agregue el siguiente código.
+1. Cree un nuevo archivo en el `./src` directorio denominado y agregue el siguiente `NavBar.tsx` código.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/NavBar.tsx" id="NavBarSnippet":::
 
-1. Cree una página principal para la aplicación. Cree un nuevo archivo en el `./src` directorio denominado `Welcome.tsx` y agregue el siguiente código.
+1. Crea una página principal para la aplicación. Cree un nuevo archivo en el `./src` directorio denominado y agregue el siguiente `Welcome.tsx` código.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/Welcome.tsx" id="WelcomeSnippet":::
 
-1. Cree un mensaje de error para mostrar mensajes al usuario. Cree un nuevo archivo en el `./src` directorio denominado `ErrorMessage.tsx` y agregue el siguiente código.
+1. Cree una presentación de mensaje de error para mostrar los mensajes al usuario. Cree un nuevo archivo en el `./src` directorio denominado y agregue el siguiente `ErrorMessage.tsx` código.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/ErrorMessage.tsx" id="ErrorMessageSnippet":::
 
@@ -56,7 +59,7 @@ Empiece por crear una barra de exploración para la aplicación.
 
     :::code language="css" source="../demo/graph-tutorial/src/index.css":::
 
-1. Abra `./src/App.tsx` y reemplace todo el contenido por lo siguiente.
+1. Abra `./src/App.tsx` y reemplace todo su contenido por lo siguiente.
 
     ```typescript
     import React, { Component } from 'react';
@@ -82,7 +85,7 @@ Empiece por crear una barra de exploración para la aplicación.
               <NavBar
                 isAuthenticated={this.props.isAuthenticated}
                 authButtonMethod={this.props.isAuthenticated ? this.props.logout : this.props.login}
-                user={this.props.user}/>
+                user={this.props.user} />
               <Container>
                 {error}
                 <Route exact path="/"
@@ -102,6 +105,6 @@ Empiece por crear una barra de exploración para la aplicación.
     export default App;
     ```
 
-1. Guarde todos los cambios y actualice la página. Ahora, la aplicación debe tener un aspecto muy diferente.
+1. Guarde todos los cambios y reinicie la aplicación. Ahora, la aplicación debería tener un aspecto muy diferente.
 
-    ![Una captura de pantalla de la Página principal rediseñada](images/create-app-01.png)
+    ![Captura de pantalla de la página principal rediseñada](images/create-app-01.png)
